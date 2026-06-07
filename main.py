@@ -2,9 +2,11 @@ import logging
 import aiohttp
 import asyncio
 import sqlite3
+from pyrogram import enums
+import kurigram
 from datetime import datetime
-from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
-from telegram.ext import Application, CommandHandler, MessageHandler, filters, ContextTypes, CallbackQueryHandler
+from pyrogram import Update, InlineKeyboardButton, InlineKeyboardMarkup
+from pyrogram.ext import Application, CommandHandler, MessageHandler, filters, ContextTypes, CallbackQueryHandler
 
 # Enable logging
 logging.basicConfig(
@@ -318,32 +320,32 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     credits = get_credits(user_id)
     
     keyboard = [
-        [InlineKeyboardButton("🔍 Number Search", callback_data="start_search")],
-        [InlineKeyboardButton("📖 View History", callback_data="view_history"),
-         InlineKeyboardButton("🗑️ Clear History", callback_data="clear_history")],
-        [InlineKeyboardButton("🔒 Protect Your Number", callback_data="protect_number_btn")],
-        [InlineKeyboardButton("💳 GET CREDITS", callback_data="get_credits_paid")]
+        [InlineKeyboardButton("🕵️‍♂️ 𝔑𝔲𝔪𝔟𝔢𝔯 𝔖𝔢𝔞𝔯𝔠𝔥 🔍", callback_data="start_search", style=enums.ButtonStyle.DANGER)],
+        [InlineKeyboardButton("👨‍💻 𝔇𝔢𝔳𝔢𝔩𝔬𝔭𝔢𝔯", url="tg://user?id=8441236350", style=enums.ButtonStyle.PRIMARY"),
+         InlineKeyboardButton("✨ 𝔐𝔶 ℌ𝔬𝔪𝔢", url="https://t.me/+1NRRqUd1replNTM1", style=enums.ButtonStyle.PRIMARY")],
+        [InlineKeyboardButton("🛡️ 𝔓𝔯𝔬𝔱𝔢𝔠𝔱 𝔜𝔬𝔲𝔯 𝔑𝔲𝔪𝔟𝔢𝔯 🔒", callback_data="protect_number_btn", style=enums.ButtonStyle.SUCCESS")],
+        [InlineKeyboardButton("💳 𝔊𝔢𝔱 ℭ𝔯𝔢𝔡𝔦𝔱𝔰", callback_data="get_credits_paid", style=enums.ButtonStyle.PRIMARY")]
     ]
     reply_markup = InlineKeyboardMarkup(keyboard)
     
     # Single message with image and caption with 3-part blockquote
     caption = (
-        "<blockquote><b>🌟 WELCOME TO PHONE LOOKUP BOT 🌟</b>\n\n"
-        "<b>📱 About This Bot:</b>\n"
-        "Get detailed information about any Indian phone number in seconds!\n\n"
-        "<b>💡 How to Use:</b>\n"
-        "Just send me a <b>10-digit Indian phone number</b>\n"
-        "Example: <code>9876543210</code>\n\n"
+        "<blockquote><b>🌟 ᴡᴇʟᴄᴏᴍᴇ ᴛᴏ ᴍᴀᴅᴀʀᴀ x ᴏsɪɴᴛ ᴘʜᴏɴᴇ ʟᴏᴏᴋᴜᴘ ʙᴏᴛ 🌟</b>\n\n"
+        "<b>📱 ᴀʙᴏᴜᴛ ᴛʜɪꜱ ʙᴏᴛ:</b>\n"
+        "📞 ɢᴇᴛ ᴅᴇᴛᴀɪʟᴇᴅ ɪɴꜰᴏʀᴍᴀᴛɪᴏɴ ᴀʙᴏᴜᴛ ᴀɴʏ ɪɴᴅɪᴀɴ ᴘʜᴏɴᴇ ɴᴜᴍʙᴇʀ ɪɴ ꜱᴇᴄᴏɴᴅꜱ!\n\n"
+        "<b>💡 ʜᴏᴡ ᴛᴏ ᴜꜱᴇ::</b>\n"
+        "ᴊᴜꜱᴛ ꜱᴇɴᴅ ᴍᴇ ᴀ <b>10-ᴅɪɢɪᴛ ɪɴᴅɪᴀɴ ᴘʜᴏɴᴇ ɴᴜᴍʙᴇʀ</b>\n"
+        "📱 ᴇxᴀᴍᴘʟᴇ: 9876543210</code>\n\n"
         "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n"
-        "<b>⚠️ Important Notice:</b>\n\n"
-        "• <i>We do not promote any illegal activities.</i>\n"
-        "• Any information provided is already publicly available.\n"
-        "• <i>You are solely responsible for how you use the information.</i>\n\n"
+        "<b>⚠️ ɪᴍᴘᴏʀᴛᴀɴᴛ ɴᴏᴛɪᴄᴇ:</b>\n\n"
+        "• <i> ᴡᴇ ᴅᴏ ɴᴏᴛ ꜱᴜᴘᴘᴏʀᴛ ᴏʀ ᴘʀᴏᴍᴏᴛᴇ ᴀɴʏ ɪʟʟᴇɢᴀʟ ᴀᴄᴛɪᴠɪᴛɪᴇꜱ.</i>\n"
+        "• ᴀʟʟ ɪɴꜰᴏʀᴍᴀᴛɪᴏɴ ᴘʀᴏᴠɪᴅᴇᴅ ɪꜱ ʙᴀꜱᴇᴅ ᴏɴ ᴘᴜʙʟɪᴄʟʏ ᴀᴠᴀɪʟᴀʙʟᴇ ᴅᴀᴛᴀ.\n"
+        "• <i>ʏᴏᴜ ᴀʀᴇ ꜱᴏʟᴇʟʏ ʀᴇꜱᴘᴏɴꜱɪʙʟᴇ ꜰᴏʀ ʜᴏᴡ ʏᴏᴜ ᴜꜱᴇ ᴀɴʏ ɪɴꜰᴏʀᴍᴀᴛɪᴏɴ ᴘʀᴏᴠɪᴅᴇᴅ.</i>\n\n"
         "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n"
         f"<b>📊 Your Stats:</b>\n"
         f"Daily Searches: {daily_searches}/2\n"
         f"Credits: {credits}\n\n"
-        f"<b>⚡ POWERED BY MADARA</b>\n\n"
+        f"<b>⚡ ᴅᴇᴠᴇʟᴏᴘᴇᴅ & ᴘᴏᴡᴇʀᴇᴅ ʙʏ ᴍᴀᴅᴀʀᴀ</b>\n\n"
         "<i>Ready to lookup any phone number?</i></blockquote>"
     )
     
@@ -375,7 +377,7 @@ async def fetch_details(update: Update, context: ContextTypes.DEFAULT_TYPE) -> N
             return
         
         keyboard = [
-            [InlineKeyboardButton("🔐 Protect This Number", callback_data=f"confirm_protect_{user_query}")]
+            [InlineKeyboardButton("🛡️ 𝔓𝔯𝔬𝔱𝔢𝔠𝔱 𝔜𝔬𝔲𝔯 𝔑𝔲𝔪𝔟𝔢𝔯 🔒", callback_data="protect_number_btn")]
         ]
         reply_markup = InlineKeyboardMarkup(keyboard)
         
@@ -529,7 +531,7 @@ async def fetch_details(update: Update, context: ContextTypes.DEFAULT_TYPE) -> N
                             )
                             
                             keyboard = [
-                                [InlineKeyboardButton("🔄 New Search", callback_data="new_search"),
+                                [InlineKeyboardButton("👨‍💻 𝔇𝔢𝔳𝔢𝔩𝔬𝔭𝔢𝔯", url="tg://user?id=8441236350", style=enums.ButtonStyle.PRIMARY"),
                                  InlineKeyboardButton("📖 History", callback_data="view_history")]
                             ]
                             reply_markup = InlineKeyboardMarkup(keyboard)

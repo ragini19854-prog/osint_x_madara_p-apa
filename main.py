@@ -3,7 +3,6 @@ import aiohttp
 import asyncio
 import sqlite3
 from pyrogram import enums
-import kurigram
 from datetime import datetime
 from pyrogram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from pyrogram.ext import Application, CommandHandler, MessageHandler, filters, ContextTypes, CallbackQueryHandler

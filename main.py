@@ -321,8 +321,8 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     
     keyboard = [
         [InlineKeyboardButton("🕵️‍♂️ 𝔑𝔲𝔪𝔟𝔢𝔯 𝔖𝔢𝔞𝔯𝔠𝔥 🔍", callback_data="start_search", style=enums.ButtonStyle.DANGER)],
-        [InlineKeyboardButton("👨‍💻 𝔇𝔢𝔳𝔢𝔩𝔬𝔭𝔢𝔯", url="tg://user?id=8441236350", style=enums.ButtonStyle.PRIMARY"),
-         InlineKeyboardButton("✨ 𝔐𝔶 ℌ𝔬𝔪𝔢", url="https://t.me/+1NRRqUd1replNTM1", style=enums.ButtonStyle.PRIMARY")],
+        [InlineKeyboardButton("👨‍💻 𝔇𝔢𝔳𝔢𝔩𝔬𝔭𝔢𝔯", url="tg://user?id=8441236350", style=enums.ButtonStyle.PRIMARY")],
+        [InlineKeyboardButton("✨ 𝔐𝔶 ℌ𝔬𝔪𝔢", url="https://t.me/+1NRRqUd1replNTM1", style=enums.ButtonStyle.PRIMARY")],
         [InlineKeyboardButton("🛡️ 𝔓𝔯𝔬𝔱𝔢𝔠𝔱 𝔜𝔬𝔲𝔯 𝔑𝔲𝔪𝔟𝔢𝔯 🔒", callback_data="protect_number_btn", style=enums.ButtonStyle.SUCCESS")],
         [InlineKeyboardButton("💳 𝔊𝔢𝔱 ℭ𝔯𝔢𝔡𝔦𝔱𝔰", callback_data="get_credits_paid", style=enums.ButtonStyle.PRIMARY")]
     ]

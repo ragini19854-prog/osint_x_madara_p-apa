@@ -2,10 +2,15 @@ import logging
 import aiohttp
 import asyncio
 import sqlite3
-from pyrogram import enums
+
 from datetime import datetime
-from pyrogram import Update, InlineKeyboardButton, InlineKeyboardMarkup
-from pyrogram.ext import Application, CommandHandler, MessageHandler, filters, ContextTypes, CallbackQueryHandler
+
+from pyrogram import Client, filters, enums
+from pyrogram.types import (
+    InlineKeyboardButton,
+    InlineKeyboardMarkup,
+    CallbackQuery,
+)
 
 # Enable logging
 logging.basicConfig(

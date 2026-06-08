@@ -1,5 +1,0 @@
-aiohttp
-asyncio
-Pyrogram
-TgCrypto
-kurigram

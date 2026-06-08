@@ -2,15 +2,9 @@ import logging
 import aiohttp
 import asyncio
 import sqlite3
-
 from datetime import datetime
-
-from pyrogram import Client, filters, enums
-from pyrogram.types import (
-    InlineKeyboardButton,
-    InlineKeyboardMarkup,
-    CallbackQuery,
-)
+from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
+from telegram.ext import Application, CommandHandler, MessageHandler, filters, ContextTypes, CallbackQueryHandler
 
 # Enable logging
 logging.basicConfig(
